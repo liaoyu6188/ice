@@ -1,4 +1,5 @@
 import axios from "axios";
+// import api from "../server/api";
 
 const baseUrl = "";
 // const baseUrl = "http://rap2api.taobao.org/app/mock/7796/";
@@ -17,13 +18,15 @@ class Services {
   }
 
   createOrder({ productId, name, address, phoneNumber }) {
-    console.log('***')
-    return axios.post(`${baseUrl}/wechat-pay`, {
-      productId,
-      name,
-      address,
-      phoneNumber
-    });
+    // const product = api.product.findProduct(productId);
+    // if (!product) {
+    //   return (ctx.body = {
+    //     success: false,
+    //     err: "这个宝贝不在了"
+    //   })
+    // }
+    // console.log(this.$store)
+    // this.$store.commit('UPDATED_PAYMENT', productId, name, address, phoneNumber);
   }
 
   getPayments () {

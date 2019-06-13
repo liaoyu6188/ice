@@ -14,7 +14,8 @@ const createStore = () => {
       user: null,
       authUser: null,
       characters: [],
-      payInfo: {}
+      payInfo: {},
+      orders: []
     },
     getters,
     actions,

@@ -105,12 +105,14 @@ export default {
   computed: {
     ...mapState({
       imageCDN: "imageCDN",
-      product: "currentProduct"
+      product: "currentProduct",
+      payInfo: 'payInfo'
     })
   },
 
   methods: {
     async handPayment() {
+      console.log(this.product)
       const that = this;
       const { name, address, phoneNumber } = this.info;
 
@@ -119,19 +121,31 @@ export default {
 
         return;
       }
-
-      const res = await this.$store.dispatch("createOrder", {
+      this.$store.commit('UPDATED_PAYMENT', {
         productId: this.product._id,
-        name: name,
-        address: address,
-        phoneNumber: phoneNumber
-      });
-      console.log({
+        images: this.product.images,
+        intro: this.product.intro,
+        title: this.product.title,
+        price: this.product.price,
+      })
+
+    
+    this.$store.commit('UPDATED_INFO', {
         productId: this.product._id,
         name: name,
         address: address,
         phoneNumber: phoneNumber
       })
+
+      toggleModal(this.modal, "支付成功");
+      this.showInfo = false;
+      // const res = await this.$store.dispatch("createOrder", {
+      //   productId: this.product._id,
+      //   name: name,
+      //   address: address,
+      //   phoneNumber: phoneNumber
+      // });
+      
 
       // const data = res.data;
 
@@ -169,6 +183,7 @@ export default {
     const id = this.$route.query.id;
     const url = window.location.href;
 
+    this.info = this.payInfo;
     this.$store.dispatch("showProduct", id);
     // await this.wechatInit(url);
   },

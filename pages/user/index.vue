@@ -1,28 +1,28 @@
 <template lang="pug">
 .container
-  .user(v-if='user')
+  .user
     .user-header
-      .text 尼采
-      img(:src='imageCDN + user.avatarUrl + "?imageView2/1/format/jpg/q/75/imageslim"')
+      .text L.y
+      img(:src='imageCDN + "avatar.jpg" + "?imageView2/1/format/jpg/q/75/imageslim"')
     .user-address
       cell(title='收货地址')
-      .user-content {{user.address}}
+      .user-content {{payInfo.address}}
     .user-phone
       cell(title='电话')
-      .user-content {{user.phoneNumber}}
+      .user-content {{payInfo.phoneNumber}}
     .user-name
       cell(title='姓名')
-      .user-content {{user.name}}
+      .user-content {{payInfo.name}}
 
     .user-order
       cell(title='我的订单')
-      .user-order-items(v-for='item in user.orders')
-        img(:src='imageCDN + item.product.images[0] + "?imageView2/1/format/jpg/q/75/imageslim"')
+      .user-order-items(v-for='item in orders')
+        img(:src='imageCDN + item.images[0] + "?imageView2/1/format/jpg/q/75/imageslim"')
         .user-order-intro
-          .title {{item.product.title}}
-          .content {{item.product.intro}}
+          .title {{item.title}}
+          .content {{item.intro}}
         .user-order-price
-          span ￥{{item.product.price}}
+          span ￥{{item.price}}
 </template>
 
 <script>
@@ -39,13 +39,15 @@ export default {
   computed: {
     ...mapState({
       user: "user",
-      imageCDN: "imageCDN"
+      imageCDN: "imageCDN",
+      payInfo: 'payInfo',
+      orders: 'orders'
     })
   },
 
   methods: {},
   beforeCreate() {
-    this.$store.dispatch("fetchUserAndOrders");
+    // this.$store.dispatch("fetchUserAndOrders");
   },
 
   components: {
