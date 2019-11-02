@@ -27,7 +27,7 @@
     "koa-router": "v7.2.1",
     "koa-session": "^5.4.0",
     "lodash": "^4.17.4",
-    "mongoose": "^4.11.0",
+    "mongoose": "^5.7.7",
     "node-sass": "^4.5.3",
     "nuxt": "~1.0.0-alpha1",
     "pug": "^2.0.0-rc.2",
